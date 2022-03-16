@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>link-card demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
+    <style>
+        #container {
+            margin: 0 10px;
+            border: 1px solid #ccc;
+        }
+        #toolbar-container {
+            border-bottom: 1px solid #ccc;
+        }
+        #editor-container {
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <p>wangEditor link-card demo</p>
+    <div id="container">
+        <div id="toolbar-container"></div>
+        <div id="editor-container"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@wangeditor/editor@latest/dist/index.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@wangeditor/core@latest/dist/index.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@wangeditor/plugin-link-card@latest/dist/index.min.js"></script>
+    <script>
+        function create() {
+            const E = window.wangEditor
+            if (E == null) return
+
+            // E.i18nChangeLanguage('en')
+
+            E.Boot.registerModule(window.WangEditorPluginLinkCard.default)
+
+            const editor = E.createEditor({
+                selector: '#editor-container',
+                config: {
+                    placeholder: 'Type here...',
+                    hoverbarKeys: {
+                        // 在编辑器中，选中链接文本时，要弹出的菜单
+                        link: {
+                            menuKeys: [
+                                'editLink', 'unLink', 'viewLink', // 默认的配置可以通过 `editor.getConfig().hoverbarKeys.link` 获取
+                                'convertToLinkCard' // 增加 '转为链接卡片'菜单
+                            ],
+                        },
+                    },
+                }
+            })
+            const toolbar = E.createToolbar({
+                editor,
+                selector: '#toolbar-container',
+                config: {
+                }
+            })
+        }
+        create()
+    </script>
+</body>
+</html>

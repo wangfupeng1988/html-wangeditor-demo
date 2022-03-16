@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>attachment demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
+    <style>
+        #container {
+            margin: 0 10px;
+            border: 1px solid #ccc;
+        }
+        #toolbar-container {
+            border-bottom: 1px solid #ccc;
+        }
+        #editor-container {
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <p>wangEditor attachment demo</p>
+    <div id="container">
+        <div id="toolbar-container"></div>
+        <div id="editor-container"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@wangeditor/editor@latest/dist/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@wangeditor/plugin-upload-attachment@latest/dist/index.min.js"></script>
+    <script>
+        function create() {
+            const E = window.wangEditor
+            if (E == null) return
+
+            // E.i18nChangeLanguage('en')
+
+            E.Boot.registerModule(window.WangEditorPluginUploadAttachment.default)
+
+            const editor = E.createEditor({
+                selector: '#editor-container',
+                config: {
+                    placeholder: 'Type here...',
+                    hoverbarKeys: {
+                        attachment: {
+                            menuKeys: ['downloadAttachment'],
+                        },
+                    },
+                    MENU_CONF: {
+                        uploadAttachment: {
+                            server: 'http://106.12.198.214:3000/api/upload-video',
+                            fieldName: 'custom-fileName',
+                            onInsertedAttachment(elem) {
+                                console.log('inserted attachment ---- ', elem)
+                            },
+                        }
+                    }
+                }
+            })
+            const toolbar = E.createToolbar({
+                editor,
+                selector: '#toolbar-container',
+                config: {
+                    insertKeys: {
+                        index: 0,
+                        keys: ['uploadAttachment'],
+                    },
+                }
+            })
+        }
+        create()
+    </script>
+</body>
+</html>
