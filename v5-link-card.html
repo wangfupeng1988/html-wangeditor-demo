@@ -27,7 +27,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@wangeditor/editor@latest/dist/index.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@wangeditor/core@latest/dist/index.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/@wangeditor/plugin-link-card@latest/dist/index.min.js"></script>
     <script>
         function create() {
@@ -38,7 +37,7 @@
 
             E.Boot.registerModule(window.WangEditorPluginLinkCard.default)
 
-            const editor = E.createEditor({
+            window.editor = E.createEditor({
                 selector: '#editor-container',
                 config: {
                     placeholder: 'Type here...',
@@ -53,7 +52,7 @@
                     },
                 }
             })
-            const toolbar = E.createToolbar({
+            window.toolbar = E.createToolbar({
                 editor,
                 selector: '#toolbar-container',
                 config: {

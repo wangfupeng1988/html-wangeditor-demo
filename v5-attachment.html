@@ -37,7 +37,7 @@
 
             E.Boot.registerModule(window.WangEditorPluginUploadAttachment.default)
 
-            const editor = E.createEditor({
+            window.editor = E.createEditor({
                 selector: '#editor-container',
                 config: {
                     placeholder: 'Type here...',
@@ -57,7 +57,7 @@
                     }
                 }
             })
-            const toolbar = E.createToolbar({
+            window.toolbar = E.createToolbar({
                 editor,
                 selector: '#toolbar-container',
                 config: {
