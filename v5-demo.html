@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>v5 demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
+    <link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
     <style>
         #container {
             margin: 0 10px;
@@ -30,7 +30,7 @@
         <div id="editor-container"></div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@wangeditor/editor@latest/dist/index.min.js"></script>
+    <script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
     <script>
         function create() {
             const E = window.wangEditor
@@ -42,6 +42,11 @@
                 selector: '#editor-container',
                 config: {
                     placeholder: 'Type here...',
+                    hoverbarKeys: {
+                        text: {
+                            menuKeys: ['headerSelect', 'insertLink', 'bulletedList', '|', 'bold', 'through', 'color', 'bgColor', 'clearStyle', 'code']
+                        }
+                    }
                 }
             })
             window.toolbar = E.createToolbar({
